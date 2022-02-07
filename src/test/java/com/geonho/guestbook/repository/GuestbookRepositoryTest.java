@@ -50,7 +50,7 @@ public class GuestbookRepositoryTest {
     @Test
     public void testQuery1(){
         Pageable pageable = PageRequest.of(0, 10, Sort.by("gno").descending());
-
+        System.out.println(pageable);
         QGuestBook qGuestBook = QGuestBook.guestBook;
 
         String keyword = "1";
@@ -62,7 +62,7 @@ public class GuestbookRepositoryTest {
         builder.and(expression);
 
         Page<GuestBook> result = guestbookRepository.findAll(builder, pageable);
-
+        System.out.println(result);
 
         result.stream().forEach(guestBook -> {
             System.out.println(guestBook);
@@ -82,7 +82,8 @@ public class GuestbookRepositoryTest {
         builder.and(exAll);
         builder.and(qGuestBook.gno.gt(0L));
         Page<GuestBook> result = guestbookRepository.findAll(builder, pageable);
-        result.stream().forEach(System.out::println);
+//        result.stream().forEach(System.out::println);
+        result.forEach(System.out::println);
     }
 
 
